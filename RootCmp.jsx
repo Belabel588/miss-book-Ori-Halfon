@@ -16,7 +16,7 @@ export function RootCmp() {
                 <nav className="main-nav">
                     <a onClick={() => setRoute('HomePage')} href="#">Home</a>
                     <a onClick={() => setRoute('AboutUs')} href="#">About</a>
-                    <a onClick={() => setRoute('BookIndex')} href="#">Cars</a>
+                    <a onClick={() => setRoute('BookIndex')} href="#">Books</a>
                 </nav>
             </header>
             <main className="content-grid">
