@@ -1,0 +1,14 @@
+
+.main-header h1{
+  color:red;
+}
+.main-header{
+display: flex;
+justify-content: space-between;
+}
+
+.main-nav{
+  display: flex;
+  justify-content: space-between;
+  gap:1em;
+}
