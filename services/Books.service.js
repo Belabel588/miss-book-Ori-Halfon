@@ -6,7 +6,12 @@ const BOOKS_KEY = 'booksDB'
 _createBooks()
 
 export const bookService = {
+  query,
+}
 
+
+function query() {
+  return storageService.query(BOOKS_KEY)
 }
 
 function _createBooks() {
@@ -26,6 +31,11 @@ function _createBook() {
   return {
     id: utilService.makeId(),
     title: utilService.makeLorem(6),
-    listPrice: utilService.getRandomIntInclusive(10, 100),
+    listPrice: {
+      amount: utilService.getRandomIntInclusive(10, 100),
+      currencyCode: 'EUR',
+      isOnSale: false
+    }
+
   }
 }
