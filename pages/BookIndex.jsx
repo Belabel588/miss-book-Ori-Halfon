@@ -13,9 +13,12 @@ export function BookIndex() {
       .then(books => setBooks(books))
   }, [])
 
+  function showDetails(bookId) {
+    console.log(bookId)
+  }
 
   return <section>
-    <BookList books={books} />
+    <BookList books={books} onShowDetails={showDetails} />
 
   </section>
 }
