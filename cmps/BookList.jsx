@@ -1,7 +1,7 @@
 import { BookPreview } from "./BookPreview.jsx"
 
 export function BookList({ books }) {
-  return <section>
+  return <section className="book-list">
     <ul>
 
       {books.map(book =>
