@@ -4,6 +4,7 @@ const { useState, useEffect } = React
 import { bookService } from '../services/Books.service.js'
 import { BookList } from '../cmps/BookList.jsx'
 import { BookDetails } from '../cmps/BookDetails.jsx'
+import { BookFilter } from '../cmps/BookFilter.jsx'
 
 
 export function BookIndex() {
@@ -16,6 +17,11 @@ export function BookIndex() {
       .then(books => setBooks(books))
   }, [])
 
+
+  // function onSetFilterBy(newFilter) {
+  //   setFilterBy(newFilter)
+  // }
+
   function showDetails(book) {
     setSelectedBook(book)
 
@@ -23,6 +29,7 @@ export function BookIndex() {
 
   return <section className='books-container'>
     <h2>Books list</h2>
+    {!selectedBook && <BookFilter />}
     {!selectedBook && <BookList books={books} onShowDetails={showDetails} />}
     {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
   </section>

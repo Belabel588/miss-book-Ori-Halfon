@@ -36,6 +36,10 @@ function remove(bookId) {
   return storageService.remove(BOOK_KEY, bookId)
 }
 
+function getDefaultFilter(filterBy = { title: '', minPrice: 0 }) {
+  return { title: filterBy.title, minPrice: filterBy.minPrice }
+}
+
 function save(book) {
   if (book.id) {
     return storageService.put(BOOK_KEY, book)
