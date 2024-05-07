@@ -5,8 +5,9 @@ export function BookList({ books, onShowDetails }) {
     <ul>
 
       {books.map(book =>
-        <li key={book.id}> <BookPreview book={book} />
-          <button onClick={() => onShowDetails(book.id)}>Details</button>
+        <li key={book.id}>
+          <BookPreview book={book} />
+          <button onClick={() => onShowDetails(book)}>Details</button>
         </li>)}
     </ul>
   </section>
