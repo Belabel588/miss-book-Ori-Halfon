@@ -1,28 +1,24 @@
-const { useState } = React
+const { useState, useEffect } = React
 
-import { bookService } from '../services/Books.service.js'
 
-export function BookFilter() {
 
-  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
-  // console.log('filterBy:', filterBy)
+export function BookFilter({ filterBy, onSetFilterBy }) {
 
-  // function onTxtChange({ target }) {
-  //   setFilterBy(prevFilterby => ({ ...prevFilterby, title: target.value }))
-  // }
-  // function onPriceChange({ target }) {
-  //   setFilterBy(prevFilterby => ({ ...prevFilterby, minPrice: +target.value }))
-  // }
+  const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
-  function handleChange() {
+  useEffect(() => {
+    onSetFilterBy(filterByToEdit)
+  }, [filterByToEdit])
+
+  function handleChange({ target }) {
     const { name, type } = target
     const value = (type === 'number') ? +target.value : target.value
-    setFilterBy(prevFilterby => ({ ...prevFilterby, [name]: value }))
+    setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
   }
 
   return <section className='book-filter'>
     <h3>Filter</h3>
-    <input onChange={handleChange} value={filterBy.title} name="txt" type="text" placeholder="Search by title" />
-    <input onChange={handleChange} value={filterBy.minPrice} name="minPrice" type="number" placeholder="Min price" />
+    <input onChange={handleChange} value={filterByToEdit.title} name="title" type="text" placeholder="Search by title" />
+    <input onChange={handleChange} value={filterByToEdit.minPrice} name="minPrice" type="number" placeholder="Min price" />
   </section>
 }

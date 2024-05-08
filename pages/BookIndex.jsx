@@ -11,25 +11,27 @@ export function BookIndex() {
 
   const [books, setBooks] = useState([])
   const [selectedBook, setSelectedBook] = useState(null)
+  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
-    bookService.query()
+    bookService.query(filterBy)
       .then(books => setBooks(books))
-  }, [])
+  }, [filterBy])
 
 
-  // function onSetFilterBy(newFilter) {
-  //   setFilterBy(newFilter)
-  // }
+  function onSetFilterBy(newFilter) {
+    setFilterBy(newFilter)
+  }
 
   function showDetails(book) {
     setSelectedBook(book)
 
   }
 
+
   return <section className='books-container'>
     <h2>Books list</h2>
-    {!selectedBook && <BookFilter />}
+    {!selectedBook && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />}
     {!selectedBook && <BookList books={books} onShowDetails={showDetails} />}
     {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
   </section>
