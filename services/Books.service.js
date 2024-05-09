@@ -58,6 +58,7 @@ function _createBooks() {
 
 
   const books = utilService.loadFromStorage(BOOK_KEY)
+
   if (books && books.length) return
 
   for (let i = 0; i < 20; i++) {
@@ -85,6 +86,7 @@ function _createBooks() {
   console.log('books', books)
   utilService.saveToStorage(BOOK_KEY, books)
 }
+
 
 function _createBook(title, listPrice) {
   const book = getEmptyBook(title, listPrice)
