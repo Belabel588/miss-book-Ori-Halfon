@@ -1,4 +1,4 @@
-
+import { LongText } from "./LongText.jsx"
 
 export function BookDetails({ book, onClose }) {
   return <article>
@@ -11,7 +11,7 @@ export function BookDetails({ book, onClose }) {
     <p>Categories:{book.categories}</p>
     <p>Language:{book.language}</p>
     <p>Page Count:{book.pageCount}</p>
-    <p>Description:{book.description}</p>
+    <LongText txt={book.description} />
 
     <p>ID:{book.id}</p>
 

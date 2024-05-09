@@ -1,4 +1,4 @@
-
+import { LongText } from "./LongText.jsx"
 
 export function BookPreview({ book }) {
   return <article className="book-preview">
@@ -7,9 +7,9 @@ export function BookPreview({ book }) {
     <p>Published Date:{book.publishedDate}</p>
 
 
-    <p>{book.listPrice.amount}</p>
+    <p>Price{book.listPrice.amount}</p>
     <p>Currency:{book.listPrice.currencyCode}</p>
     <img src={book.thumbnail} alt="book-img" />
-    <p>Description:{book.description}</p>
+    <LongText txt={book.description} />
   </article>
 }
