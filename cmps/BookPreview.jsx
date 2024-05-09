@@ -1,6 +1,8 @@
 import { LongText } from "./LongText.jsx"
 
 export function BookPreview({ book }) {
+  const { listPrice } = book
+
   return <article className="book-preview">
     <h3>{book.title}</h3>
     <p>Author:{book.authors}</p>
@@ -11,5 +13,6 @@ export function BookPreview({ book }) {
     <p>Currency:{book.listPrice.currencyCode}</p>
     <img src={book.thumbnail} alt="book-img" />
     <LongText txt={book.description} />
+    {listPrice.isOnSale && <img className="on-sale-icon" src="../assets/booksImages/onSale.jpg" alt="" />}
   </article>
 }

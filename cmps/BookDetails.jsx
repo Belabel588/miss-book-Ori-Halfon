@@ -1,6 +1,9 @@
 import { LongText } from "./LongText.jsx"
 
 export function BookDetails({ book, onClose }) {
+  const { listPrice } = book
+
+
   return <article>
     <button onClick={onClose} className='close'>X</button>
 
@@ -18,7 +21,7 @@ export function BookDetails({ book, onClose }) {
 
     <p>Price:{book.listPrice.amount}</p>
     <p>Currency:{book.listPrice.currencyCode}</p>
-
+    {listPrice.isOnSale && <img className="on-sale-icon" src="../assets/booksImages/onSale.jpg" alt="" />}
     <img src={book.thumbnail} alt="book-img" />
 
   </article>
