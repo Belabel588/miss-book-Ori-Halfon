@@ -30,7 +30,6 @@ export function BookIndex() {
 
 
   return <section className='books-container'>
-    <h2>Books list</h2>
     {!selectedBook && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />}
     {!selectedBook && <BookList books={books} onShowDetails={showDetails} />}
     {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
