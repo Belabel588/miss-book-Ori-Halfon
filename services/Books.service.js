@@ -55,7 +55,11 @@ function getEmptyBook(title = '', listPrice = { amount: 0 }) {
 
 function _createBooks() {
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
-  const books = []
+
+
+  const books = utilService.loadFromStorage(BOOK_KEY)
+  if (books && books.length) return
+
   for (let i = 0; i < 20; i++) {
     const book = {
       id: utilService.makeId(),
