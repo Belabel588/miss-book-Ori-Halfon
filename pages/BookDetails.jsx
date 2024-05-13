@@ -1,4 +1,4 @@
-const { useParams } = ReactRouter
+const { useParams, useNavigate } = ReactRouter
 const { useEffect, useState } = React
 
 const { Link } = ReactRouterDOM
@@ -11,18 +11,32 @@ import { bookService } from "../services/Books.service.js"
 export function BookDetails({ }) {
   const [book, setBook] = useState(null)
   const params = useParams()
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     bookService.get(params.bookId)
       .then(book => {
         setBook(book)
+        setIsLoading(false)
+      })
+
+      .catch(() => {
+        alert('Book not found')
+        navigate('/bookIndex')
+
+
+          .finally(() => {
+
+            setIsLoading(false)
+          })
       })
   }, [])
 
 
 
 
-  if (!book) return <div>Loading...</div>
+  if (isLoading) return <div>Loading...</div>
   const { listPrice } = book
   return <article>
     <Link to="/bookIndex"><button>x</button></Link>
