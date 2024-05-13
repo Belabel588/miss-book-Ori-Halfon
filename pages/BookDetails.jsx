@@ -1,6 +1,8 @@
 const { useParams } = ReactRouter
 const { useEffect, useState } = React
 
+const { Link } = ReactRouterDOM
+
 import { LongText } from "../cmps/LongText.jsx"
 import { bookService } from "../services/Books.service.js"
 
@@ -23,7 +25,7 @@ export function BookDetails({ }) {
   if (!book) return <div>Loading...</div>
   const { listPrice } = book
   return <article>
-    {/* <button onClick={onClose} className='close'>X</button> */}
+    <Link to="/bookIndex"><button>x</button></Link>
 
 
     <h3>Title:{book.title}</h3>
