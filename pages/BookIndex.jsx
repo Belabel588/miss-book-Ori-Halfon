@@ -3,12 +3,11 @@ const { useState, useEffect } = React
 
 import { bookService } from '../services/Books.service.js'
 import { BookList } from '../cmps/BookList.jsx'
-import { BookDetails } from '../cmps/BookDetails.jsx'
+import { BookDetails } from './BookDetails.jsx'
 import { BookFilter } from '../cmps/BookFilter.jsx'
 
 
 export function BookIndex() {
-
   const [books, setBooks] = useState([])
   const [selectedBook, setSelectedBook] = useState(null)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
@@ -32,6 +31,5 @@ export function BookIndex() {
   return <section className='books-container'>
     {!selectedBook && <BookFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />}
     {!selectedBook && <BookList books={books} onShowDetails={showDetails} />}
-    {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}
   </section>
 }

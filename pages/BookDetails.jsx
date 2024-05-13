@@ -1,11 +1,29 @@
-import { LongText } from "./LongText.jsx"
+const { useParams } = ReactRouter
+const { useEffect, useState } = React
 
-export function BookDetails({ book, onClose }) {
+import { LongText } from "../cmps/LongText.jsx"
+import { bookService } from "../services/Books.service.js"
+
+
+
+export function BookDetails({ }) {
+  const [book, setBook] = useState(null)
+  const params = useParams()
+
+  useEffect(() => {
+    bookService.get(params.bookId)
+      .then(book => {
+        setBook(book)
+      })
+  }, [])
+
+
+
+
+  if (!book) return <div>Loading...</div>
   const { listPrice } = book
-
-
   return <article>
-    <button onClick={onClose} className='close'>X</button>
+    {/* <button onClick={onClose} className='close'>X</button> */}
 
 
     <h3>Title:{book.title}</h3>

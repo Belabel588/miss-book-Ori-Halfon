@@ -1,6 +1,8 @@
+const { Link } = ReactRouterDOM
+
 import { BookPreview } from "./BookPreview.jsx"
 
-export function BookList({ books, onShowDetails }) {
+export function BookList({ books }) {
 
 
   return <section className="book-list">
@@ -10,7 +12,7 @@ export function BookList({ books, onShowDetails }) {
         <li key={book.id}>
           <BookPreview book={book} />
 
-          <button onClick={() => onShowDetails(book)}>Details</button>
+          <Link to={`/Book/${book.id}`}><button>Details</button> </Link>
         </li>)}
     </ul>
   </section>

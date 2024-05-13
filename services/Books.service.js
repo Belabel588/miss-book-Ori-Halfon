@@ -2,6 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'bookDB'
+// console.log('hi2');
 _createBooks()
 
 export const bookService = {
@@ -54,12 +55,14 @@ function getEmptyBook(title = '', listPrice = { amount: 0 }) {
 }
 
 function _createBooks() {
+  let books = utilService.loadFromStorage(BOOK_KEY)
+
   const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
 
 
-  const books = utilService.loadFromStorage(BOOK_KEY)
 
   if (books && books.length) return
+  books = []
 
   for (let i = 0; i < 20; i++) {
     const book = {
@@ -88,8 +91,4 @@ function _createBooks() {
 }
 
 
-function _createBook(title, listPrice) {
-  const book = getEmptyBook(title, listPrice)
-  book.id = utilService.makeId()
-  return book
-}
+
