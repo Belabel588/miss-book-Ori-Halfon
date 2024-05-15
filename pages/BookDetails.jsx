@@ -18,6 +18,7 @@ export function BookDetails({ }) {
     bookService.get(params.bookId)
       .then(book => {
         setBook(book)
+        console.log(book);
         setIsLoading(false)
       })
 
@@ -31,7 +32,7 @@ export function BookDetails({ }) {
             setIsLoading(false)
           })
       })
-  }, [])
+  }, [params.bookId])
 
 
 
@@ -57,6 +58,9 @@ export function BookDetails({ }) {
     <p>Currency:{book.listPrice.currencyCode}</p>
     {listPrice.isOnSale && <img className="on-sale-icon" src="../assets/booksImages/onSale.jpg" alt="" />}
     <img src={book.thumbnail} alt="book-img" />
+
+    <Link to={`/Book/${book.prevBookId}`}><button>Prev</button></Link>
+    <Link to={`/Book/${book.nextBookId}`}><button>Next</button></Link>
 
   </article>
 
