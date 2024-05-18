@@ -3,9 +3,10 @@ const { useEffect, useState } = React
 
 const { Link } = ReactRouterDOM
 
+import { bookService } from "../services/Books.service.js"
+import { utilService } from "../services/util.service.js"
 import { AddReview } from "../cmps/AddReview.jsx"
 import { LongText } from "../cmps/LongText.jsx"
-import { bookService } from "../services/Books.service.js"
 
 
 
@@ -47,6 +48,16 @@ export function BookDetails({ }) {
 
   // ! REVIEWS FUNCTIONS 
 
+  function onSaveReview(reviewToAdd) {
+    bookService.saveReview(book.id, reviewToAdd)
+      .then((review) => {
+        const reviews = [review, ...book.reviews]
+        setBook({ ...book, reviews })
+      })
+      .catch(() => {
+        showErrorMsg(`Review to ${book.title} Failed!`, bookId)
+      })
+  }
 
   function onToggleReviewModal() {
     setIsShowReviewModal(!isShowReviewModal)
@@ -82,7 +93,7 @@ export function BookDetails({ }) {
 
     <button onClick={onToggleReviewModal}>Add review</button>
 
-    {isShowReviewModal && <AddReview onToggleReviewModal={onToggleReviewModal} />}
+    {isShowReviewModal && <AddReview onToggleReviewModal={onToggleReviewModal} onSaveReview={onSaveReview} />}
 
     {/* 
     <div className="reviews-container">
