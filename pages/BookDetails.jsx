@@ -7,6 +7,7 @@ import { bookService } from "../services/Books.service.js"
 import { utilService } from "../services/util.service.js"
 import { AddReview } from "../cmps/AddReview.jsx"
 import { LongText } from "../cmps/LongText.jsx"
+import { ReviewList } from "../cmps/ReviewList.jsx"
 
 
 
@@ -95,10 +96,10 @@ export function BookDetails({ }) {
 
     {isShowReviewModal && <AddReview onToggleReviewModal={onToggleReviewModal} onSaveReview={onSaveReview} />}
 
-    {/* 
+
     <div className="reviews-container">
-      <ReviewList />
-    </div> */}
+      <ReviewList reviews={book.reviews} />
+    </div>
 
 
 
