@@ -12,7 +12,8 @@ export const bookService = {
   save,
   getEmptyBook,
   getDefaultFilter,
-  saveReview
+  saveReview,
+  removeReview
 }
 
 function query(filterBy = {}) {
@@ -67,6 +68,15 @@ function saveReview(bookId, reviewToSave) {
   book.reviews.unshift(review)
   utilService.saveToStorage(BOOK_KEY, books)
   return Promise.resolve(review)
+}
+
+function removeReview(bookId, reviewId) {
+  let books = utilService.loadFromStorage(BOOK_KEY)
+  let book = books.find((book) => book.id === bookId)
+  const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+  book.reviews = newReviews
+  utilService.saveToStorage(BOOK_KEY, books)
+  return Promise.resolve()
 }
 
 

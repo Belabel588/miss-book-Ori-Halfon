@@ -60,6 +60,14 @@ export function BookDetails({ }) {
       })
   }
 
+  function onRemoveReview(reviewId) {
+    bookService.removeReview(book.id, reviewId)
+      .then(() => {
+        const filteredReviews = book.reviews.filter(review => review.id !== reviewId)
+        setBook({ ...book, reviews: filteredReviews })
+      })
+  }
+
   function onToggleReviewModal() {
     setIsShowReviewModal(!isShowReviewModal)
   }
@@ -98,7 +106,7 @@ export function BookDetails({ }) {
 
 
     <div className="reviews-container">
-      <ReviewList reviews={book.reviews} />
+      <ReviewList reviews={book.reviews} onRemoveReview={onRemoveReview} />
     </div>
 
 
