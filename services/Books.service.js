@@ -60,11 +60,12 @@ function getEmptyBook(title = '', listPrice = { amount: 0 }) {
 }
 
 function saveReview(bookId, reviewToSave) {
-  const books = _loadBooksFromStorage()
+  const books = utilService.loadFromStorage(BOOK_KEY)
   const book = books.find((book) => book.id === bookId)
+  if (!book.reviews) book.reviews = []
   const review = _createReview(reviewToSave)
   book.reviews.unshift(review)
-  _saveBooksToStorage(books)
+  utilService.saveToStorage(BOOK_KEY, books)
   return Promise.resolve(review)
 }
 
@@ -79,6 +80,13 @@ function _setNextPrevBookId(book) {
     book.prevBookId = prevBook.id
     return book
   })
+}
+
+function _createReview(reviewToSave) {
+  return {
+    id: utilService.makeId(),
+    ...reviewToSave,
+  }
 }
 
 function _createBooks() {
